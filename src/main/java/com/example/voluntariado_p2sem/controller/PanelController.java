@@ -18,7 +18,16 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
-        return "panelAdmin";           // /WEB-INF/views/panelAdmin.jsp
+        return "panels/admin/panelAdmin";           // /WEB-INF/views/panelAdmin.jsp
+    }
+    @GetMapping("/indexAdmin")
+    public String indexAdmin(Model model, HttpSession httpSession) {
+        UsuarioDTO usuario = (UsuarioDTO) httpSession.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        model.addAttribute("usuario", usuario);
+        return "panels/admin/indexAdmin";
     }
 
     @GetMapping("/rh")
@@ -28,7 +37,16 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
-        return "panelRH";              // /WEB-INF/views/panelRH.jsp
+        return "panels/rh/panelRH";              // /WEB-INF/views/panelRH.jsp
+    }
+    @GetMapping("/indexRH")
+    public String indexRH(Model model, HttpSession httpSession) {
+        UsuarioDTO usuario = (UsuarioDTO) httpSession.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        model.addAttribute("usuario", usuario);
+        return "panels/rh/indexRH";
     }
 
     @GetMapping("/trabajador")
@@ -38,7 +56,16 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
-        return "panelTrabajador";      // /WEB-INF/views/panelTrabajador.jsp
+        return "panels/trabajador/panelTrabajador";      // /WEB-INF/views/panelTrabajador.jsp
+    }
+    @GetMapping("/indexTrabajador")
+    public String indexTrabajador(Model model, HttpSession httpSession) {
+        UsuarioDTO usuario = (UsuarioDTO) httpSession.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        model.addAttribute("usuario", usuario);
+        return "panels/trabajador/indexTrabajador";
     }
 
     @GetMapping("/equipo")
@@ -48,6 +75,15 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
-        return "panelEquipoOper";      // /WEB-INF/views/PanelEquipoOper.jsp
+        return "panels/equipoOper/panelEquipoOper";      // /WEB-INF/views/PanelEquipoOper.jsp
+    }
+    @GetMapping("/indexEquipoOper")
+    public String indexEquipoOper(Model model, HttpSession httpSession) {
+        UsuarioDTO usuario = (UsuarioDTO) httpSession.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        model.addAttribute("usuario", usuario);
+        return "panels/equipoOper/indexEquipoOp";
     }
 }

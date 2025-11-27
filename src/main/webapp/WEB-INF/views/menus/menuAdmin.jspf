@@ -1,0 +1,6 @@
+<!-- menu.html -->
+<nav id="main-nav">
+    <h3>Men&uacute;</h3>
+    <a href="${pageContext.request.contextPath}/panel/indexAdmin" class="menu">Actividades</a>
+    <a href="${pageContext.request.contextPath}/panel/admin" class="menu">Panel principal</a>
+</nav>
