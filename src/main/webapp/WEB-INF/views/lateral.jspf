@@ -1,0 +1,9 @@
+<!-- lateral1.html -->
+<aside id="main-aside">
+    <h3>Otros sitios de inter&eacute;s</h3>
+    <ul>
+        <li>CONRICyT</li>
+        <li>ACM Digital Library</li>
+        <li>Library of Congress (USA)</li>
+    </ul>
+</aside>

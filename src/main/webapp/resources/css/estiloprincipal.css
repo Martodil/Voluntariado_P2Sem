@@ -1,0 +1,138 @@
+/*
+Hoja de estilo responsivo
+Autor: BAOZ
+Fuentes: CSS Grid Templates https://www.quackit.com/html/templates/css_grid_templates.cfm
+		 Scheme Color https://www.schemecolor.com
+*/
+
+a:link{
+	color:#5B90E4; 
+	font-weight: bold;
+}
+a:visited{
+	color:#5D8989;
+}
+a:hover{
+	color:#466767; 
+	font-weight: lighter; 
+}
+a.menu{
+	display: block;
+	padding: 0.5em;
+}
+  
+aside, header, footer, main, nav {
+	padding: 0.3em;
+	border-radius: 0.3em;
+}
+
+body {
+	font-family: Verdana, sans-serif, "Times New Roman";
+	margin: 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0.1rem;
+}
+
+#titPral{
+	display: inline; 
+	color: #6a3d34;
+	vertical-align: 90%;
+	font-weight:bold;
+	text-shadow: 0.3em 0.3em 0.6em #134212;
+}
+
+/*Definir grid y sus áreas*/
+#main-layout{
+	display: grid;
+	grid-template-areas: 
+		"header"
+		"nav"
+		"content"
+		"advertisement"
+		"footer";
+	grid-template-rows: 5em 10em 15em 1fr; 
+	grid-template-columns: 1fr;
+	grid-row-gap: 0.5em;
+	grid-column-gap: 0.5em;
+	height: 97vh;
+}
+
+#main-aside {
+	grid-area: advertisement;
+	background: #ffddab;
+    color: #E69D70;
+}
+#main-content {
+	grid-area: content;
+	background:#CDF7E6;
+    color:#6a3d34;
+	overflow-y: auto;
+	text-align: justify;
+}
+
+#main-footer {
+	grid-area: footer;
+	background: #ffbfbf;
+    color: #9e5d5d;
+	font-size: 60%;
+	text-align: center;
+}
+
+#main-header {
+	grid-area: header;
+	background:rgb(255, 251, 242);
+	color:#243E4F;
+}
+
+#main-nav {
+	grid-area: nav; 
+	background:#99ceff;
+	color: #0084ff;
+}
+
+#inner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0.3em;
+  background: white;
+  margin: 1rem;
+}
+#inner-grid > div {
+  padding: 0.2em;
+  text-align: center;
+}
+.por_columnas{
+	/*No aplica para dispositivos pequeños*/
+}
+
+/*Alterar distribución para dispositivos mayores*/
+@media all and (min-width: 575px) {
+	#main-layout { 
+		grid-template-areas: 
+			"header header"
+			"nav content"
+			"advertisement content"
+			"advertisement footer";
+		grid-template-rows: 5em 1fr 15em 4em;  
+		grid-template-columns: 25% 1fr;
+	}
+	#inner-grid {
+	  display: grid;
+	  grid-template-columns: 1fr 1fr 1fr 1fr;
+	  grid-gap: 0.3em;
+	}
+	
+	.por_columnas{
+		column-count: 3;
+		column-gap: 3.5em;
+		column-rule-width: thick;
+		column-rule-style: dashed;
+		column-rule-color: white;
+	}
+	section h3{
+		column-span: all;
+		text-align: center;
+	}
+}
