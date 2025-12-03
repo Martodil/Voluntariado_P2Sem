@@ -23,8 +23,7 @@
             </div>
         </div>
         <nav class="header-menu">
-            <a href="<spring:url value='/actividades'/>">Actividades</a>
-            <a href="<spring:url value='/registro'/>">Registro</a>
-            <a href="<spring:url value='/login'/>">Inicio de sesión</a>
+            <a href="${pageContext.request.contextPath}/auth/registro">Registro</a>
+            <a href="${pageContext.request.contextPath}/auth/login" >Inicio de sesión</a>
         </nav>
     </header>
