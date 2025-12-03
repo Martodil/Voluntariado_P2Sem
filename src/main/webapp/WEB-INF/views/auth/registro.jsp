@@ -11,7 +11,7 @@
 <%@include file="../menu.jspf"%>
 
 <main id="main-content">
-    <section>
+    <section style="max-width: 480px; margin: 0 auto;">
         <header>
             <h3>Registro de usuario</h3>
         </header>
@@ -92,5 +92,4 @@
     </section>
 </main>
 
-<%@include file="../lateral.jspf"%>
 <%@include file="../pie.jspf"%>

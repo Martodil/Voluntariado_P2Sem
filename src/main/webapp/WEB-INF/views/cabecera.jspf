@@ -22,8 +22,4 @@
                 <span class="site-subtitle">Conecta, apoya y transforma</span>
             </div>
         </div>
-        <nav class="header-menu">
-            <a href="${pageContext.request.contextPath}/auth/registro">Registro</a>
-            <a href="${pageContext.request.contextPath}/auth/login" >Inicio de sesión</a>
-        </nav>
     </header>
