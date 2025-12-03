@@ -3,5 +3,5 @@
     <h3>Men&uacute;</h3>
     <a href="${pageContext.request.contextPath}/" class="menu">Actividades</a>
     <a href="${pageContext.request.contextPath}/auth/registro" class="menu">Registro</a>
-    <a href="${pageContext.request.contextPath}/auth/login" class="menu">Inicio de Sesión</a>
+    <a href="${pageContext.request.contextPath}/auth/login" class="menu">Inicio de sesion</a>
 </nav>

@@ -1,23 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: MarcoADP
---%>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-    <head>
-        <title>Title</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="<spring:url value="/resources/css/estiloprincipal.css"/>"
-              rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div id="main-layout">
-            <header id="main-header">
-                <img src="<spring:url value="/resources/imgs/logo.png"/>" alt="logo"/>
-                <h2 id="titPral">Página de voluntariado</h2>
-            </header>
+<head>
+    <title>Página de voluntariado</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="<spring:url value='/resources/css/estiloprincipal.css'/>"
+          rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="main-layout">
+    <header id="main-header" class="header-topbar">
+        <div class="header-left">
+            <img src="<spring:url value='/resources/imgs/logo.png'/>"
+                 alt="logo" class="logo-header"/>
+            <div class="header-title-block">
+                <h1 id="titPral">Página de voluntariado</h1>
+                <span class="site-subtitle">Conecta, apoya y transforma</span>
+            </div>
+        </div>
+        <nav class="header-menu">
+            <a href="${pageContext.request.contextPath}/auth/registro">Registro</a>
+            <a href="${pageContext.request.contextPath}/auth/login" >Inicio de sesión</a>
+        </nav>
+    </header>
