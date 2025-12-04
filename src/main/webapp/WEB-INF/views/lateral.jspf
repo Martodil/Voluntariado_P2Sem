@@ -1,9 +1,26 @@
 <!-- lateral1.html -->
-<aside id="main-aside">
-    <h3>Otros sitios de inter&eacute;s</h3>
-    <ul>
-        <li>CONRICyT</li>
-        <li>ACM Digital Library</li>
-        <li>Library of Congress (USA)</li>
-    </ul>
+<aside class="home-hero-panel">
+    <h3 class="home-panel-title">Pr&oacute;xima actividad destacada</h3>
+    <p class="home-panel-text">
+        Jornada de reforestaci&oacute;n y limpieza de &aacute;reas verdes en la zona comunitaria.
+    </p>
+    <div class="home-panel-info">
+        <div class="home-panel-row">
+            <span class="home-label">Fecha</span>
+            <span class="home-value">S&aacute;bado 14, 09:00 h</span>
+        </div>
+        <div class="home-panel-row">
+            <span class="home-label">Lugar</span>
+            <span class="home-value">Parque ecol&oacute;gico comunitario</span>
+        </div>
+        <div class="home-panel-row">
+            <span class="home-label">Cupo estimado</span>
+            <span class="home-value">25 voluntarios</span>
+        </div>
+    </div>
+    <div class="home-panel-tags">
+        <span class="badge">Ambiental</span>
+        <span class="badge">Comunitario</span>
+        <span class="badge">Al aire libre</span>
+    </div>
 </aside>

@@ -18,12 +18,8 @@
             <img src="<spring:url value='/resources/imgs/logo.png'/>"
                  alt="logo" class="logo-header"/>
             <div class="header-title-block">
-                <h1 id="titPral">Página de voluntariado</h1>
+                <h1 id="titPral">P&aacute;gina de voluntariado</h1>
                 <span class="site-subtitle">Conecta, apoya y transforma</span>
             </div>
         </div>
-        <nav class="header-menu">
-            <a href="${pageContext.request.contextPath}/auth/registro">Registro</a>
-            <a href="${pageContext.request.contextPath}/auth/login" >Inicio de sesión</a>
-        </nav>
     </header>
