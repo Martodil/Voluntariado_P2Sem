@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = { "com.example.voluntariado_p2sem" }) //Paquete a partir del cual buscar
+@ComponentScan(basePackages = { "com.example.voluntariado_p2sem" })
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
@@ -34,9 +34,6 @@ public class WebConfig implements WebMvcConfigurer {
     //Soporte a recursos.
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        //Indica dónde buscar los recursos
-        //handler -> la URL que incluya /resources/ y algo más
-        //la va a buscar en webapp/resources
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
     }

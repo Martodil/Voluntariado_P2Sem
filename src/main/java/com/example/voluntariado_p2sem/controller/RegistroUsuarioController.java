@@ -48,9 +48,8 @@ public class RegistroUsuarioController {
                     "El usuario fue registrado correctamente. Ahora puedes iniciar sesión."
             );
 
-            // MUY IMPORTANTE: redirect RELATIVO
-            // Como estamos en /auth/registro, "redirect:login"
-            // se convierte en /auth/login (Spring agrega el contextPath solo).
+            // En /auth/registro, "redirect:login"
+            // En /auth/login Spring agrega el contextPath solo.
             return "redirect:login";
 
         } catch (Exception ex) {

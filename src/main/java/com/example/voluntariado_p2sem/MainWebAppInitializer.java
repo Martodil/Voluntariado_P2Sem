@@ -12,7 +12,6 @@ public class MainWebAppInitializer
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        //Debe apuntar a una clase a partir de donde tomará configuraciones y/o modelos
         return new Class<?>[] { DomainConfig.class };
     }
 

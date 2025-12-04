@@ -30,8 +30,8 @@ public class DomainConfig {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/voluntariado");
-        dataSource.setUsername("voluntariado");   // <-- pon el tuyo
-        dataSource.setPassword("12345");  // <-- pon el tuyo
+        dataSource.setUsername("voluntariado");
+        dataSource.setPassword("12345");
         return dataSource;
     }
 

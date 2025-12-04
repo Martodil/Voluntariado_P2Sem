@@ -15,8 +15,8 @@
       <table class="tabla-actividades">
         <thead>
         <tr>
-          <th>ID Inscripción</th>
-          <th>Título actividad</th>
+          <th>ID Inscripci&oacute;n</th>
+          <th>T&iacute;tulo actividad</th>
           <th>Fecha</th>
           <th>Horario</th>
           <th>Estado</th>

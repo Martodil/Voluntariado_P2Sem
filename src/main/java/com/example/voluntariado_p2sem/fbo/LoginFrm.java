@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public class LoginFrm {
 
     @NotBlank(message = "Debe ingresar un usuario o correo electrónico")
-    private String usuario; // Puede ser nombreUsuario o emailUsuario
+    private String usuario;
 
     @NotBlank(message = "Debe ingresar la contraseña")
     private String password;

@@ -14,18 +14,17 @@ public class Usuario implements Serializable {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    // NOTA: en la BD es INTEGER, aquí lo mapeamos como Integer
     @Column(name = "id_empleado")
     private Integer idEmpleado;
 
     @Column(name = "nombreusuario", nullable = false, length = 15)
     private String nombreUsuario;
 
-    // En la BD es CITEXT (case-insensitive). Lo mapeamos como String.
+    // En la BD es CITEXT (case-insensitive).
     @Column(name = "emailusuario", nullable = false, unique = true)
     private String emailUsuario;
 
-    // Contraseña encriptada con BCrypt (hash completo)
+    // Contraseña encriptada con BCrypt
     @Column(name = "contrausuario", nullable = false)
     private String contraUsuario;
 

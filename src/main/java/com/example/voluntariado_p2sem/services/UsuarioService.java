@@ -53,7 +53,7 @@ public class UsuarioService {
             throw new IllegalArgumentException("Tipo de usuario no válido");
         }
 
-        // 2. Convertir idEmpleado a Integer (puede lanzar NumberFormatException si está mal)
+        // 2. Convertir idEmpleado a Integer
         Integer idEmpleado = null;
         if (frm.getIdEmpleado() != null && !frm.getIdEmpleado().isBlank()) {
             idEmpleado = Integer.parseInt(frm.getIdEmpleado());
@@ -64,7 +64,7 @@ public class UsuarioService {
         usuario.setNombreUsuario(frm.getNombreUsuario());
         usuario.setEmailUsuario(frm.getEmailUsuario());
         usuario.setTipoUsuario(tipo);
-        usuario.setEmailConfirmado(true); // emailConfirmado siempre true
+        usuario.setEmailConfirmado(true);
         usuario.setIdEmpleado(idEmpleado);
 
         // 4. Encriptar contraseña con BCrypt
@@ -89,7 +89,7 @@ public class UsuarioService {
             Admin admin = new Admin();
             admin.setIdAdmin(usuario.getIdUsuario());
             admin.setUltimaConexionAdmin(java.time.LocalDate.now());
-            admin.setPermisosEspecialesAdmin("Control total"); // como dijiste
+            admin.setPermisosEspecialesAdmin("Control total");
             adminIRep.save(admin);
         }
 

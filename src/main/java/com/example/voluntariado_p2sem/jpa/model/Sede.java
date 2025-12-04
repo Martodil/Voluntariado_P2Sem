@@ -13,7 +13,7 @@ public class Sede implements Serializable {
     private Integer idSede;
 
     @Column(name = "id_municipio")
-    private Integer idMunicipio;   // luego lo ligamos a Municipio si quieres
+    private Integer idMunicipio;
 
     @Column(name = "nombresede", length = 150)
     private String nombreSede;
