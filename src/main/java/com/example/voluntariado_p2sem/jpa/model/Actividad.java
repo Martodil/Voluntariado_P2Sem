@@ -1,5 +1,5 @@
 package com.example.voluntariado_p2sem.jpa.model;
-
+//comentario
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
