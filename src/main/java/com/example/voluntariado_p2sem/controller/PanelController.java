@@ -1,7 +1,9 @@
 package com.example.voluntariado_p2sem.controller;
 
 import com.example.voluntariado_p2sem.dto.UsuarioDTO;
+import com.example.voluntariado_p2sem.jpa.repositories.ActividadIRep;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/panel")
 public class PanelController {
+
+    @Autowired
+    private ActividadIRep actividadIRep;
+
+    // Inicio general (página principal)
+    @GetMapping("/inicio")
+    public String inicio(Model model) {
+        model.addAttribute("actividades",
+                actividadIRep.findAll());
+        return "index";
+    }
 
     @GetMapping("/admin")
     public String panelAdmin(Model model, HttpSession httpSession) {
@@ -21,12 +34,14 @@ public class PanelController {
         return "panels/admin/panelAdmin";           // /WEB-INF/views/panelAdmin.jsp
     }
     @GetMapping("/indexAdmin")
-    public String indexAdmin(Model model, HttpSession httpSession) {
+    public String indexAdmin(HttpSession httpSession, Model model ) {
         UsuarioDTO usuario = (UsuarioDTO) httpSession.getAttribute("usuarioActual");
         if (usuario == null) {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
+        model.addAttribute("actividades",
+                actividadIRep.findAll());
         return "panels/admin/indexAdmin";
     }
 
@@ -46,6 +61,8 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
+        model.addAttribute("actividades",
+                actividadIRep.findAll());
         return "panels/rh/indexRH";
     }
 
@@ -65,6 +82,8 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
+        model.addAttribute("actividades",
+                actividadIRep.findAll());
         return "panels/trabajador/indexTrabajador";
     }
 
@@ -84,6 +103,11 @@ public class PanelController {
             return "redirect:/auth/login";
         }
         model.addAttribute("usuario", usuario);
+        model.addAttribute("actividades",
+                actividadIRep.findAll());
         return "panels/equipoOper/indexEquipoOp";
     }
+
+// Lo mismo para indexRH, indexEquipoOper, indexTrabajador
+
 }

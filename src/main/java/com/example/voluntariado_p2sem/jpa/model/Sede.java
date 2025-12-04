@@ -13,13 +13,15 @@ public class Sede implements Serializable {
     private Integer idSede;
 
     @Column(name = "id_municipio")
-    private Integer idMunicipio;
+    private Integer idMunicipio;   // luego lo ligamos a Municipio si quieres
 
     @Column(name = "nombresede", length = 150)
     private String nombreSede;
 
     @Column(name = "direccionsede", length = 255)
     private String direccionSede;
+
+    // Getters y setters
 
     public Integer getIdSede() {
         return idSede;

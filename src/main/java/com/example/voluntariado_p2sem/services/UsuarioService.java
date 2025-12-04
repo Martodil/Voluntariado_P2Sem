@@ -4,12 +4,13 @@ import com.example.voluntariado_p2sem.dto.UsuarioDTO;
 import com.example.voluntariado_p2sem.dto.UsuarioRegistroDTO;
 import com.example.voluntariado_p2sem.fbo.LoginFrm;
 import com.example.voluntariado_p2sem.fbo.RegistroUsuarioFrm;
-import com.example.voluntariado_p2sem.jpa.model.Usuario;
-import com.example.voluntariado_p2sem.jpa.repositories.UsuarioIRep;
+import com.example.voluntariado_p2sem.jpa.model.*;
+import com.example.voluntariado_p2sem.jpa.repositories.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,16 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioIRep usuarioIRep;
+
+    @Autowired
+    private TrabajadorIRep trabajadorIRep;
+    @Autowired
+    private AdminIRep adminIRep;
+    @Autowired
+    private RecursosHumanosIRep recursosHumanosIRep;
+    @Autowired
+    private EquipoOperativoIRep equipoOperativoIRep;
+
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     // ========= REGISTRO DE USUARIO =========
@@ -50,21 +61,57 @@ public class UsuarioService {
 
         // 3. Crear entidad Usuario y asignar valores
         Usuario usuario = new Usuario();
-        usuario.setIdEmpleado(idEmpleado);
         usuario.setNombreUsuario(frm.getNombreUsuario());
         usuario.setEmailUsuario(frm.getEmailUsuario());
-
-        // emailConfirmado siempre true (no manejamos correo real)
-        usuario.setEmailConfirmado(true);
+        usuario.setTipoUsuario(tipo);
+        usuario.setEmailConfirmado(true); // emailConfirmado siempre true
+        usuario.setIdEmpleado(idEmpleado);
 
         // 4. Encriptar contraseña con BCrypt
         String hash = passwordEncoder.encode(frm.getPassword());
         usuario.setContraUsuario(hash);
 
-        usuario.setTipoUsuario(tipo);
-
         // 5. Guardar en base de datos
         Usuario usuarioGuardado = usuarioIRep.save(usuario);
+
+        // 3. Crear registro dependiendo del usuario
+        // === TRABAJADOR ===
+        if ("T".equalsIgnoreCase(frm.getTipoUsuario())) {
+            Trabajador t = new Trabajador();
+            t.setIdTrabajador(usuario.getIdUsuario()); // *** CLAVE ***
+            t.setPuestoTrab(frm.getPuestoTrab());
+            t.setDeptotrab(frm.getDeptotrab());
+            t.setHorasacumuladastrab(0);
+            trabajadorIRep.save(t);
+        }
+        // === ADMINISTRADOR ===
+        if ("A".equalsIgnoreCase(frm.getTipoUsuario())) {
+            Admin admin = new Admin();
+            admin.setIdAdmin(usuario.getIdUsuario());
+            admin.setUltimaConexionAdmin(java.time.LocalDate.now());
+            admin.setPermisosEspecialesAdmin("Control total"); // como dijiste
+            adminIRep.save(admin);
+        }
+
+        // === RECURSOS HUMANOS ===
+        if ("R".equalsIgnoreCase(frm.getTipoUsuario())) {
+            RecursosHumanos rh = new RecursosHumanos();
+            rh.setIdRecursosHum(usuario.getIdUsuario());
+            rh.setReportesGeneradosRh(0); // empiezan en 0
+            rh.setAreaResponsableRh(frm.getAreaResponsableRh());
+            rh.setUltimaRevisionRh(LocalDate.now());
+            recursosHumanosIRep.save(rh);
+        }
+
+        // === EQUIPO OPERATIVO ===
+        if ("E".equalsIgnoreCase(frm.getTipoUsuario())) {
+            EquipoOperativo eq = new EquipoOperativo();
+            eq.setIdEquipoOper(usuario.getIdUsuario());
+            eq.setAreaResponsableEqOper(frm.getAreaResponsableEqOper());
+            eq.setInventarioAsignadoEqOper(frm.getInventarioAsignadoEqOper());
+            eq.setTelefonoContacto(frm.getTelefonoContactoEqOper());
+            equipoOperativoIRep.save(eq);
+        }
 
         // 6. Mapear a DTO de registro
         UsuarioRegistroDTO dto = new UsuarioRegistroDTO();
@@ -108,7 +155,7 @@ public class UsuarioService {
             return null;
         }
 
-        // 5. Mapear a UsuarioDTO (lo que guardamos en sesión)
+        // 5. Mapear a UsuarioDTO
         UsuarioDTO dto = new UsuarioDTO();
         dto.setIdUsuario(usuario.getIdUsuario());
         dto.setNombreUsuario(usuario.getNombreUsuario());

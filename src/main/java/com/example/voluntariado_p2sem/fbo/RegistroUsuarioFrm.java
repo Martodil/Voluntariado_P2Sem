@@ -3,6 +3,9 @@ package com.example.voluntariado_p2sem.fbo;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class RegistroUsuarioFrm {
 
@@ -28,6 +31,23 @@ public class RegistroUsuarioFrm {
     @NotBlank(message = "Debe seleccionar un tipo de usuario")
     private String tipoUsuario;
 
+    // Atributos exclusivos del trabajador
+    private String puestoTrab;
+    private String deptotrab;
+    private int horasacumuladastrab;
+
+    //Atributos exclusivos de recursos humanos
+    private String areaResponsableRh;
+
+    //Atributos exclusivos para equipo operativo
+    private String areaResponsableEqOper;
+    private String inventarioAsignadoEqOper;
+    private String telefonoContactoEqOper;
+
+    //Atributo para el administrador
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate ultimaRevisionRh;
+
     // ===== Getters y setters =====
 
     public String getIdEmpleado() { return idEmpleado; }
@@ -47,4 +67,28 @@ public class RegistroUsuarioFrm {
 
     public String getTipoUsuario() { return tipoUsuario; }
     public void setTipoUsuario(String tipoUsuario) { this.tipoUsuario = tipoUsuario; }
+
+    public int getHorasacumuladastrab() { return horasacumuladastrab; }
+    public void setHorasacumuladastrab(int horasacumuladastrab) { this.horasacumuladastrab = horasacumuladastrab; }
+
+    public String getDeptotrab() { return deptotrab; }
+    public void setDeptotrab(String deptotrab) { this.deptotrab = deptotrab; }
+
+    public String getPuestoTrab() { return puestoTrab; }
+    public void setPuestoTrab(String puestoTrab) { this.puestoTrab = puestoTrab; }
+
+    public String getAreaResponsableRh() { return areaResponsableRh; }
+    public void setAreaResponsableRh(String areaResponsableRh) { this.areaResponsableRh = areaResponsableRh; }
+
+    public LocalDate getUltimaRevisionRh() { return ultimaRevisionRh; }
+    public void setUltimaRevisionRh(LocalDate ultimaRevisionRh) { this.ultimaRevisionRh = ultimaRevisionRh; }
+
+    public String getTelefonoContactoEqOper() { return telefonoContactoEqOper; }
+    public void setTelefonoContactoEqOper(String telefonoContactoEqOper) { this.telefonoContactoEqOper = telefonoContactoEqOper; }
+
+    public String getAreaResponsableEqOper() { return areaResponsableEqOper; }
+    public void setAreaResponsableEqOper(String areaResponsableEqOper) { this.areaResponsableEqOper = areaResponsableEqOper; }
+
+    public String getInventarioAsignadoEqOper() { return inventarioAsignadoEqOper; }
+    public void setInventarioAsignadoEqOper(String inventarioAsignadoEqOper) { this.inventarioAsignadoEqOper = inventarioAsignadoEqOper; }
 }

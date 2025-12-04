@@ -1,0 +1,6 @@
+<!-- Menu para visualización de actividades (sin login) -->
+<div class="home-hero-actions">
+    <a href="${pageContext.request.contextPath}/" class="btn-primary">Volver</a>
+    <a href="${pageContext.request.contextPath}/auth/registro" class="btn-secondary">Registrarme como voluntario</a>
+    <a href="${pageContext.request.contextPath}/auth/login" class="btn-secondary">Iniciar sesi&oacute;n</a>
+</div>

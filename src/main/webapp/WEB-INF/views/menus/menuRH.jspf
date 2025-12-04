@@ -1,6 +1,5 @@
 <!-- menu.html -->
-<nav id="main-nav">
-    <h3>Men&uacute;</h3>
-    <a href="${pageContext.request.contextPath}/panel/indexRH" class="menu">Actividades</a>
-    <a href="${pageContext.request.contextPath}/panel/rh" class="menu">Panel principal</a>
-</nav>
+<div class="home-hero-actions">
+    <a href="${pageContext.request.contextPath}/panel/rh" class="btn-secondary">Panel principal</a>
+    <a href="${pageContext.request.contextPath}/actividades/rh/lista" class="btn-secondary"> Ver actividades </a>
+</div>

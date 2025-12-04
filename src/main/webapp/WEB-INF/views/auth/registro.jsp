@@ -1,14 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mario
-  Date: 21/11/2025
-  Time: 11:59 p. m.
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../cabecera.jspf"%>
-<%@include file="../menu.jspf"%>
+<%@include file="../menus/menuD.jspf"%>
 
 <main id="main-content">
     <section style="max-width: 480px; margin: 0 auto;">
@@ -45,21 +36,21 @@
 
             <!-- EMAIL -->
             <div style="margin-bottom: 12px;">
-                <label for="emailUsuario">Correo electrónico:</label><br>
+                <label for="emailUsuario">Correo electr&oacute;nico:</label><br>
                 <form:input path="emailUsuario" id="emailUsuario" />
                 <form:errors path="emailUsuario" cssStyle="color:red;" />
             </div>
 
             <!-- CONTRASEÑA -->
             <div style="margin-bottom: 12px;">
-                <label for="password">Contraseña:</label><br>
+                <label for="password">Contrase&ntilde;a:</label><br>
                 <form:password path="password" id="password" />
                 <form:errors path="password" cssStyle="color:red;" />
             </div>
 
             <!-- CONFIRMAR CONTRASEÑA -->
             <div style="margin-bottom: 12px;">
-                <label for="confirmarPassword">Confirmar contraseña:</label><br>
+                <label for="confirmarPassword">Confirmar contrase&ntilde;a:</label><br>
                 <form:password path="confirmarPassword" id="confirmarPassword" />
                 <form:errors path="confirmarPassword" cssStyle="color:red;" />
             </div>
@@ -69,7 +60,7 @@
                 <label for="tipoUsuario">Tipo de usuario:</label><br>
 
                 <form:select path="tipoUsuario" id="tipoUsuario">
-                    <form:option value="" label="-- Selecciona una opción --"/>
+                    <form:option value="" label="-- Selecciona una opcion --"/>
                     <form:option value="A" label="Administrador"/>
                     <form:option value="R" label="Recursos Humanos"/>
                     <form:option value="E" label="Equipo Operativo"/>
@@ -77,6 +68,40 @@
                 </form:select>
 
                 <form:errors path="tipoUsuario" cssStyle="color:red;" />
+            </div>
+
+            <!-- Datos Trabajador -->
+            <div id="datosTrabajador" style="display:none; border: 1px solid #ccc; padding: 0.5rem; margin-bottom: 1rem;">
+                <h4>Datos de trabajador</h4>
+
+                <label for="deptotrab">Departamento:</label>
+                <form:input path="deptotrab" id="deptotrab"/><br/>
+
+                <label for="puestoTrab">Puesto:</label>
+                <form:input path="puestoTrab" id="puestoTrab"/><br/>
+            </div>
+
+            <!-- Datos RH -->
+            <div id="datosRH" style="display:none;">
+                <h4>Datos de Recursos Humanos</h4>
+
+                <label for="areaResponsableRh">&Aacute;rea responsable:</label>
+                <form:input path="areaResponsableRh" id="areaResponsableRh"/><br/>
+
+            </div>
+
+            <!-- Datos Equipo Operativo -->
+            <div id="datosEqOper" style="display:none;">
+                <h4>Datos de Equipo Operativo</h4>
+
+                <label for="areaResponsableEqOper">&Aacute;rea responsable:</label>
+                <form:input path="areaResponsableEqOper" id="areaResponsableEqOper"/><br/>
+
+                <label for="inventarioAsignadoEqOper">Inventario asignado:</label>
+                <form:input path="inventarioAsignadoEqOper" id="inventarioAsignadoEqOper"/><br/>
+
+                <label for="telefonoContactoEqOper">Tel&eacute;fono de contacto:</label>
+                <form:input path="telefonoContactoEqOper" id="telefonoContactoEqOper"/><br/>
             </div>
 
             <!-- BOTÓN -->
@@ -87,7 +112,26 @@
         </form:form>
 
         <br>
-        <a href="${pageContext.request.contextPath}/auth/login">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+        <a href="${pageContext.request.contextPath}/auth/login">¿Ya tienes una cuenta? Inicia sesi&oacute;n aqu&iacute;</a>
+
+        <script>
+            const selectTipo = document.getElementById('tipoUsuario');
+            const datosTrabajador = document.getElementById('datosTrabajador');
+            const datosRH = document.getElementById('datosRH');
+            const datosEqOper = document.getElementById('datosEqOper');
+
+            function actualizarSecciones() {
+                const tipo = selectTipo.value;
+
+                datosTrabajador.style.display = (tipo === 'T') ? 'block' : 'none';
+                datosRH.style.display          = (tipo === 'R') ? 'block' : 'none';
+                datosEqOper.style.display      = (tipo === 'E') ? 'block' : 'none';
+                // Admin (A) no muestra nada extra
+            }
+
+            selectTipo.addEventListener('change', actualizarSecciones);
+            actualizarSecciones();
+        </script>
 
     </section>
 </main>

@@ -239,13 +239,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary{
-    background:#27b5a3;
+    background:#166a62;
     color:#0b403a;
     box-shadow:0 12px 30px rgba(0,0,0,0.18);
 }
 
 .btn-primary:hover{
-    background:#1f9688;
+    background:#13524c;
     color:#0b403a;
     transform:translateY(-1px);
     box-shadow:0 16px 40px rgba(0,0,0,0.22);
@@ -375,5 +375,5 @@ h1, h2, h3, h4, h5, h6 {
 .home-hero-actions .btn-primary:active,
 .home-hero-actions .btn-primary:focus{
     color:#ffffff !important;
-    font-weight:700 !important;
+    font-weight:600 !important;
 }
