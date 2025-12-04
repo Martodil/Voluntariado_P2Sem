@@ -24,6 +24,6 @@
         </div>
         <nav class="header-menu">
             <a href="${pageContext.request.contextPath}/auth/registro">Registro</a>
-            <a href="${pageContext.request.contextPath}/auth/login" >Inicio de sesión</a>
+            <a href="${pageContext.request.contextPath}/auth/login" >Inicio de sesi&oacute;n</a>
         </nav>
     </header>

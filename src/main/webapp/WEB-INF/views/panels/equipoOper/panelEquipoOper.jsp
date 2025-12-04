@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../../cabecera.jspf"%>
+<%@include file="../../cabeceraB.jspf"%>
 <%@include file="../../menus/menuEquipoOp.jspf"%>
 <main id="main-content">
     <section>

@@ -17,6 +17,7 @@
                 <li>Registra tu participación y consulta el historial de actividades realizadas.</li>
                 <li>Recibe recordatorios y actualizaciones sobre los proyectos en los que colaboras.</li>
             </ul>
+
         </div>
         <%@include file="lateral.jspf"%>
     </section>
