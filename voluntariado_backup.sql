@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict FlGPB36XZstByfsvRemP1VpLG9hwlKyZ7k2UbZQkoAnDtEQy4Bb3GAYZSwTRKhc
+\restrict vnlhpig2guetuEr8pr9CKEhVgwkAgJ2BX6Taq2rkNg4yXVdGwooD74rbKw9xpLF
 
 -- Dumped from database version 16.10
 -- Dumped by pg_dump version 16.10
 
--- Started on 2025-11-26 21:50:00
+-- Started on 2025-12-04 11:13:43
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -367,6 +367,7 @@ COPY public.actividad (id_actividad, id_sede, id_semestre, claveturnoact, titulo
 3	3	3	1	Reforestación Comunitaria	2026-01-20	09:00-13:00	Marta López	40	2026-01-31
 4	4	4	3	Recolección de Alimentos	2026-04-12	18:00-21:00	José Ramírez	20	2026-04-25
 5	5	5	4	Apoyo a Hogar de Ancianos	2027-02-01	09:00-15:00	Elena Torres	35	2027-02-15
+10	1	1	1	Actividad de prueba	2025-01-01	09:00 - 13:00	Marco Díaz Peláez	1	2025-01-02
 \.
 
 
@@ -378,6 +379,7 @@ COPY public.actividad (id_actividad, id_sede, id_semestre, claveturnoact, titulo
 
 COPY public.admin (id_admin, ultimaconexionadmin, permisosespecialesadmin) FROM stdin;
 2	2025-10-09	Control total
+12	2025-12-04	Control total
 \.
 
 
@@ -389,6 +391,7 @@ COPY public.admin (id_admin, ultimaconexionadmin, permisosespecialesadmin) FROM 
 
 COPY public.equipo_operativo (id_equipooper, arearesponsableeqoper, inventarioasignadoeqoper, telefonocontacto) FROM stdin;
 4	Mantenimiento	Kit eléctrico	555-123-4567
+15	Mantenimiento	Kit eléctrico	2721638866
 \.
 
 
@@ -404,6 +407,9 @@ COPY public.inscripcion (id_inscripcion, id_trabajador, id_actividad, estadoinsc
 3	1	3	Finalizado	25	2026-01-18
 4	1	4	Cancelado	10	2026-04-10
 5	1	5	Activo	18	2027-01-28
+10	13	1	Activo	0	2025-12-04
+11	13	10	Activo	0	2025-12-04
+12	13	2	Activo	0	2025-12-04
 \.
 
 
@@ -430,6 +436,8 @@ COPY public.municipio (id_municipio, nombremun, estadomun) FROM stdin;
 
 COPY public.recursos_humanos (id_recursoshum, reportesgeneradosrh, ultimarevisionrh, arearesponsablerh) FROM stdin;
 3	15	2025-10-09	Contratación
+14	0	2025-01-01	Contratación
+16	0	2025-12-04	Contratación
 \.
 
 
@@ -471,6 +479,7 @@ COPY public.semestre (id_semestre, nosemestre, aniosemestre) FROM stdin;
 
 COPY public.trabajador (id_trabajador, deptotrab, puestotrab, horasacumuladastrab) FROM stdin;
 1	Producción	Operador de maquinaria	12
+13	Producción	Operador de maquinaria	0
 \.
 
 
@@ -500,11 +509,11 @@ COPY public.usuarios (id_usuario, id_empleado, nombreusuario, emailusuario, cont
 2	102	lgarcia	lgarcia@empresa.com	$2a$06$s/dxkx8ydgAluZJHo8kRqOlflVHXy.LpXuGXicGB9U1r6h0IWiA5C	A	t
 3	103	mlopez	mlopez@empresa.com	$2a$06$Ri9zaiTEM032og5vsDiEa.gA39wc8/kwCrmLrI72ryPoB6CobliG6	R	t
 4	104	jramirez	jramirez@empresa.com	$2a$06$yhV5l5NgyQCphYhFugnNDOekhF.t.5BJSIu0XMRsBPlykSWVv4L3W	E	t
-6	123456	Martodil	marios_mex_20@hotmail.com	$2a$10$7G09vUIaMpW8Q7tqUOXdx.kN8ElaEer7RHnmBuNEhAwKZrmq.VSnu	A	t
-7	654321	Ocram	marios.mex.20@gmail.com	$2a$10$SU2Tkf4WReSPmtoFo0tDo.SWywP9ZGShGSMXCQOyxK74Ehds2XkK2	T	t
-8	246810	Ricardo	ricardo@hotmail.com	$2a$10$ZCbsO9bgrc1yc.zGRtxxBusR1JIk/AM3RwxSXN7Ai9sQC23GckOhi	R	t
-9	3691215	Julian	julian@outlook.com	$2a$10$haB6LmviLDhwRxjm4Ifl1.APZb/YqZVuRpyGUXeY2OSrBIq5JkOde	E	t
-10	123678	Alex	alex@hotmail.com	$2a$10$meyQasmM2sXCQ22AuiMi0uLhYGOepbKzApUVeBgoJEeLRCDn052bW	R	t
+12	123456	Martodil	marios_mex_20@hotmail.com	$2a$10$VtZIN6ozbErG4qH0Dx.1YeQEA.ZTVKYyn6lG8ajLMccWMHXJiOn16	A	t
+13	1	Ocram	marios.mex.20@gmail.com	$2a$10$fyUqdQ4/UePOEAaPPo7KUulJJKb/OEZhewlUX1jA0ihN39Rx0DWia	T	t
+14	12	Alex	alex@hotmail.com	$2a$10$Wge9fJ7qLTpeoztY6Bi7GOhHLrZqS/RdDfOnrKfKsXkTdpKkT6c8m	R	t
+15	123	Ricardo	ricardo@hotmail.com	$2a$10$7HFmjdRWMW/kjWc2Ak06Y.k/CskU2Hv3mRFCRmjUC9GpAFQRUEOdW	E	t
+16	1234	Nolan	nolan@outlook.com	$2a$10$.BAovgHqrY9ASY/LxmRnieACq59xGgILORZ.uxYPny1i6/HAKD1BK	R	t
 \.
 
 
@@ -514,7 +523,7 @@ COPY public.usuarios (id_usuario, id_empleado, nombreusuario, emailusuario, cont
 -- Name: actividad_id_actividad_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.actividad_id_actividad_seq', 5, true);
+SELECT pg_catalog.setval('public.actividad_id_actividad_seq', 11, true);
 
 
 --
@@ -523,7 +532,7 @@ SELECT pg_catalog.setval('public.actividad_id_actividad_seq', 5, true);
 -- Name: inscripcion_id_inscripcion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.inscripcion_id_inscripcion_seq', 1, false);
+SELECT pg_catalog.setval('public.inscripcion_id_inscripcion_seq', 12, true);
 
 
 --
@@ -568,7 +577,7 @@ SELECT pg_catalog.setval('public.turno_id_turno_seq', 10, true);
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: marco
 --
 
-SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 10, true);
+SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 16, true);
 
 
 --
@@ -806,11 +815,11 @@ GRANT ALL ON TABLE public.usuarios TO voluntariado WITH GRANT OPTION;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES TO marco WITH GRANT OPTION;
 
 
--- Completed on 2025-11-26 21:50:01
+-- Completed on 2025-12-04 11:13:43
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict FlGPB36XZstByfsvRemP1VpLG9hwlKyZ7k2UbZQkoAnDtEQy4Bb3GAYZSwTRKhc
+\unrestrict vnlhpig2guetuEr8pr9CKEhVgwkAgJ2BX6Taq2rkNg4yXVdGwooD74rbKw9xpLF
 
