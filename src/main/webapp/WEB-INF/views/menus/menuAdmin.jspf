@@ -1,8 +1,7 @@
 <!-- menu.html -->
-<nav id="main-nav">
-    <h3>Men&uacute;</h3>
-    <a href="${pageContext.request.contextPath}/panel/indexAdmin" class="menu">Inicio</a>
-    <a href="${pageContext.request.contextPath}/panel/admin" class="menu">Panel principal</a>
-    <a href="${pageContext.request.contextPath}/actividades/admin/lista" class="menu">Lista de Actividades</a>
-    <a href="${pageContext.request.contextPath}/actividades/admin/nueva" class="menu">Registro de actividades</a>
-</nav>
+<div class="home-hero-actions">
+    <a href="${pageContext.request.contextPath}/panel/indexAdmin" class="btn-secondary">Inicio</a>
+    <a href="${pageContext.request.contextPath}/panel/admin" class="btn-secondary">Panel principal</a>
+    <a href="${pageContext.request.contextPath}/actividades/admin/lista" class="btn-secondary">Lista de Actividades</a>
+    <a href="${pageContext.request.contextPath}/actividades/admin/nueva" class="btn-secondary">Registro de actividades</a>
+</div>

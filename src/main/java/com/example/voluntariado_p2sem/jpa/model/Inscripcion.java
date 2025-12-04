@@ -1,12 +1,13 @@
 package com.example.voluntariado_p2sem.jpa.model;
 
-import com.example.voluntariado_p2sem.jpa.model.Actividad;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "inscripciones")
+@Table(name = "inscripcion")
 public class Inscripcion implements Serializable {
 
     @Id
@@ -14,21 +15,25 @@ public class Inscripcion implements Serializable {
     @Column(name = "id_inscripcion")
     private Integer idInscripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_trabajador", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_actividad", nullable = false)
     private Actividad actividad;
 
-    @Column(name = "estado", length = 20)
-    private String estado; // p.ej. "INSCRITO", "CANCELADO"
+    @Column(name = "estadoinsc", length = 10)
+    private String estado;
 
-    @Column(name = "fecha_registro")
-    private LocalDateTime fechaRegistro;
+    @Column(name = "horasinsc")
+    private Integer horasInsc;
 
-    // === Getters y setters ===
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "fecharegistroinsc")
+    private LocalDate fechaRegistro;
+
+    // ===== Getters & Setters =====
 
     public Integer getIdInscripcion() {
         return idInscripcion;
@@ -62,11 +67,19 @@ public class Inscripcion implements Serializable {
         this.estado = estado;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public Integer getHorasInsc() {
+        return horasInsc;
+    }
+
+    public void setHorasInsc(Integer horasInsc) {
+        this.horasInsc = horasInsc;
+    }
+
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 }

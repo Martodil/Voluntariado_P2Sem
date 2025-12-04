@@ -1,6 +1,6 @@
 <!-- menu.html -->
-<nav id="main-nav">
-    <h3>Men&uacute;</h3>
-    <a href="${pageContext.request.contextPath}/panel/trabajador" class="menu">Panel principal</a>
-    <a href="${pageContext.request.contextPath}/actividades/trabajador/lista" class="menu">Actividades</a>
-</nav>
+<div class="home-hero-actions">
+    <a href="${pageContext.request.contextPath}/panel/trabajador" class="btn-secondary">Panel principal</a>
+    <a href="${pageContext.request.contextPath}/actividades/trabajador/lista" class="btn-secondary">Lista de actividades </a>
+    <a href="${pageContext.request.contextPath}/actividades/trabajador/mis-actividades" class="btn-secondary">Mis actividades</a>
+</div>

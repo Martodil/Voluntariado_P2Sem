@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ActividadController {
 
     @Autowired
     private InscripcionIRep inscripcionIRep;
+
 
     @Autowired
     private UsuarioIRep usuarioIRep;
@@ -127,14 +129,15 @@ public class ActividadController {
                               RedirectAttributes redirect) {
 
         UsuarioDTO usuarioDTO = (UsuarioDTO) session.getAttribute("usuarioActual");
+
         if (usuarioDTO == null) {
             return "redirect:/auth/login";
         }
 
-        // Solo trabajadores (tipo T)
+        // Solo trabajadores
         if (!"T".equalsIgnoreCase(usuarioDTO.getTipoUsuario())) {
             redirect.addFlashAttribute("mensajeError", "Solo los trabajadores pueden inscribirse a actividades.");
-            return "redirect:/panel/trabajador";
+            return "redirect:/actividades/trabajador/lista";
         }
 
         Usuario usuario = usuarioIRep.findById(usuarioDTO.getIdUsuario())
@@ -150,14 +153,42 @@ public class ActividadController {
             Inscripcion inscripcion = new Inscripcion();
             inscripcion.setUsuario(usuario);
             inscripcion.setActividad(actividad);
-            inscripcion.setEstado("INSCRITO");
-            inscripcion.setFechaRegistro(LocalDateTime.now());
+            inscripcion.setHorasInsc(0);
+            inscripcion.setEstado("Activo");
+            inscripcion.setFechaRegistro(LocalDate.now());
+
             inscripcionIRep.save(inscripcion);
+
             redirect.addFlashAttribute("mensajeOk", "Tu inscripción se registró correctamente.");
         }
 
-        return "redirect:/panel/indexTrabajador";
+        return "redirect:/actividades/trabajador/lista";
     }
+
+    @GetMapping("/trabajador/mis-actividades")
+    public String verMisActividades(Model model, HttpSession session, RedirectAttributes redirect) {
+
+        UsuarioDTO usuarioDTO = (UsuarioDTO) session.getAttribute("usuarioActual");
+        if (usuarioDTO == null) {
+            return "redirect:/auth/login";
+        }
+
+        if (!"T".equalsIgnoreCase(usuarioDTO.getTipoUsuario())) {
+            redirect.addFlashAttribute("mensajeError", "Solo los trabajadores pueden ver sus inscripciones.");
+            return "redirect:/actividades/lista";
+        }
+
+        Usuario usuario = usuarioIRep.findById(usuarioDTO.getIdUsuario())
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+
+        var inscripciones = inscripcionIRep.findByUsuario(usuario);
+
+        model.addAttribute("usuario", usuarioDTO);
+        model.addAttribute("inscripciones", inscripciones);
+
+        return "actividades/misActividadesTrabajador";
+    }
+
 
     // RH
     @GetMapping("/rh/lista")

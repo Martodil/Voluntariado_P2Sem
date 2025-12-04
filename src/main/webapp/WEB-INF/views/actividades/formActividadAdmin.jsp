@@ -42,40 +42,42 @@
                 <form:options items="${turnos}" itemValue="idTurno" itemLabel="turno" />
             </form:select>
             <br/>
-
+            <br/>
 
             <!-- TITULO -->
             <label for="tituloAct">Título de la actividad:</label>
             <form:input path="tituloAct" id="tituloAct" required="true"/>
             <br/>
-
+            <br/>
 
             <!-- FECHA -->
             <label for="fechaAct">Fecha de la actividad:</label>
             <form:input path="fechaAct" id="fechaAct" type="date" required="true"/>
             <br/>
-
+            <br/>
 
             <!-- HORARIO -->
             <label for="horarioAct">Horario:</label>
             <form:input path="horarioAct" id="horarioAct" placeholder="08:00-12:00"/>
+            <br/>
             <br/>
 
             <!-- RESPONSABLE -->
             <label for="responsableAct">Responsable:</label>
             <form:input path="responsableAct" id="responsableAct" />
             <br/>
-
+            <br/>
             <!-- CUPO -->
             <label for="cupoAct">Cupo máximo:</label>
             <form:input path="cupoAct" id="cupoAct" type="number" min="1" />
             <br/>
-
+            <br/>
 
             <!-- VIGENCIA -->
             <label for="vigenciaAct">Vigencia:</label>
             <form:input path="vigenciaAct" id="vigenciaAct" type="date" />
-            <br/><br/>
+            <br/>
+            <br/>
 
 
             <button type="submit">Guardar actividad</button>

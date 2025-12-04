@@ -10,7 +10,7 @@
                 y hacer más sencillo el seguimiento de tus participaciones.
             </p>
 
-            <%@include file="menu.jspf"%>
+            <%@include file="menus/menu.jspf"%>
 
             <ul class="home-hero-list">
                 <li>Explora propuestas clasificadas por tipo de apoyo y nivel de compromiso.</li>

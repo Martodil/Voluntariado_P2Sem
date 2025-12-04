@@ -1,11 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@include file="../cabeceraB.jspf"%>
-<%@include file="../menus/menuTrabajador.jspf"%> <%-- o el menú que uses --%>
+<%@include file="../menus/menuTrabajador.jspf"%>
 
 <main id="main-content">
     <section>
         <header>
-            <h3>Actividades disponibles</h3>
+            <h3>Actividades disponibles (Trabajador)</h3>
         </header>
+
+        <!-- Mensajes flash opcionales -->
+        <c:if test="${not empty mensajeOk}">
+            <div class="mensaje-ok">${mensajeOk}</div>
+        </c:if>
+        <c:if test="${not empty mensajeError}">
+            <div class="mensaje-error">${mensajeError}</div>
+        </c:if>
 
         <table class="tabla-actividades">
             <thead>
@@ -17,6 +28,7 @@
                 <th>Responsable</th>
                 <th>Cupo</th>
                 <th>Vigencia</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -29,6 +41,12 @@
                     <td>${act.responsableAct}</td>
                     <td>${act.cupoAct}</td>
                     <td>${act.vigenciaAct}</td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/actividades/${act.idActividad}/inscribirse"
+                              method="post" style="display:inline;">
+                            <button type="submit">Inscribirme</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

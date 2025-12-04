@@ -1,5 +1,5 @@
 <%@include file="../cabeceraB.jspf"%>
-<%@include file="../menuB.jspf"%> <%-- o el menú que uses --%>
+<%@include file="../menus/menuB.jspf"%> <%-- o el menú que uses --%>
 
 <main id="main-content">
   <section>

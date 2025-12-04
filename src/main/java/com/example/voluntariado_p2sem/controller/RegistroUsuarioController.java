@@ -1,6 +1,8 @@
 package com.example.voluntariado_p2sem.controller;
 
 import com.example.voluntariado_p2sem.fbo.RegistroUsuarioFrm;
+import com.example.voluntariado_p2sem.jpa.model.Trabajador;
+import com.example.voluntariado_p2sem.jpa.repositories.TrabajadorIRep;
 import com.example.voluntariado_p2sem.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class RegistroUsuarioController {
         return "auth/registro";     // /WEB-INF/views/registro.jsp
     }
 
-    // POST /auth/registro -> procesa el formulario
+    // POST /auth/registro
     @PostMapping("/registro")
     public String procesarRegistro(
             @Valid @ModelAttribute("registroUsuarioFrm") RegistroUsuarioFrm frm,
