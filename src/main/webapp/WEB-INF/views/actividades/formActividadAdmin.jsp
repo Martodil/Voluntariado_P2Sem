@@ -1,90 +1,110 @@
-<%@include file="../cabeceraB.jspf"%>
-<%@include file="../menus/menuAdmin.jspf"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ include file="../cabeceraB.jspf" %>
+<%@ include file="../menus/menuAdmin.jspf" %>
 
 <main id="main-content">
     <section>
         <header>
-            <h3>Registrar nueva actividad</h3>
+            <h3>
+                <c:choose>
+                    <c:when test="${actividad.idActividad == null}">
+                        Registrar nueva actividad
+                    </c:when>
+                    <c:otherwise>
+                        Editar actividad
+                    </c:otherwise>
+                </c:choose>
+            </h3>
         </header>
 
+        <!-- DETERMINA AUTOMÁTICAMENTE EL ACTION SEGÚN SI ES ALTA O EDICIÓN -->
         <form:form method="post"
                    modelAttribute="actividad"
-                   action="${pageContext.request.contextPath}/actividades/admin/guardar">
+                   action="${actividad.idActividad == null
+                           ? pageContext.request.contextPath.concat('/actividades/admin/guardar')
+                           : pageContext.request.contextPath.concat('/actividades/actualizar')}">
+
+            <!-- ID oculto para edición -->
+            <form:hidden path="idActividad"/>
 
             <!-- SEDE -->
-            <label for="idSede">Sede:</label>
-            <label for="idSede">Sede:</label>
-            <form:select path="idSede" id="idSede" required="true">
-                <form:option value="" label="-- Selecciona una sede --" />
-                <form:options items="${sedes}" itemValue="idSede" itemLabel="nombreSede" />
+            <label>Sede:</label><br>
+            <form:select path="idSede">
+                <form:option value="" label="-- Selecciona --"/>
+                <form:options items="${sedes}" itemValue="idSede" itemLabel="nombreSede"/>
             </form:select>
-            <br/>
+            <br><br>
 
-            <br/>
             <!-- SEMESTRE -->
-            <label for="idSemestre">Semestre:</label>
-            <form:select path="idSemestre" id="idSemestre" required="true">
-                <form:option value="" label="-- Selecciona semestre --" />
+            <label>Semestre:</label><br>
+            <form:select path="idSemestre">
+                <option value="">-- Selecciona semestre --</option>
                 <c:forEach var="sem" items="${semestres}">
-                    <form:option value="${sem.idSemestre}">
-                        ${sem.noSemestre} - ${sem.anioSemestre}
-                    </form:option>
+                    <option value="${sem.idSemestre}"
+                        ${sem.idSemestre == actividad.idSemestre ? 'selected' : ''}>
+                            ${sem.noSemestre} - ${sem.anioSemestre}
+                    </option>
                 </c:forEach>
             </form:select>
-            <br/>
-
-            <br/>
+            <br><br>
 
             <!-- TURNO -->
-            <label for="claveTurnoAct">Turno:</label>
-            <form:select path="claveTurnoAct" id="claveTurnoAct" required="true">
-                <form:option value="" label="-- Selecciona turno --" />
-                <form:options items="${turnos}" itemValue="idTurno" itemLabel="turno" />
+            <label>Turno:</label><br>
+            <form:select path="claveTurnoAct">
+                <form:option value="" label="-- Selecciona turno --"/>
+                <form:options items="${turnos}" itemValue="idTurno" itemLabel="turno"/>
             </form:select>
-            <br/>
-            <br/>
+            <br><br>
 
-            <!-- TITULO -->
-            <label for="tituloAct">Título de la actividad:</label>
-            <form:input path="tituloAct" id="tituloAct" required="true"/>
-            <br/>
-            <br/>
+            <!-- TÍTULO -->
+            <label>Título:</label><br>
+            <form:input path="tituloAct" required="true"/>
+            <br><br>
 
             <!-- FECHA -->
-            <label for="fechaAct">Fecha de la actividad:</label>
-            <form:input path="fechaAct" id="fechaAct" type="date" required="true"/>
-            <br/>
-            <br/>
+            <label>Fecha de la actividad:</label><br>
+            <form:input path="fechaAct" type="date" required="true"/>
+            <br><br>
 
             <!-- HORARIO -->
-            <label for="horarioAct">Horario:</label>
-            <form:input path="horarioAct" id="horarioAct" placeholder="08:00-12:00"/>
-            <br/>
-            <br/>
+            <label>Horario (ej. 09:00 - 13:00):</label><br>
+            <form:input path="horarioAct"/>
+            <br><br>
 
             <!-- RESPONSABLE -->
-            <label for="responsableAct">Responsable:</label>
-            <form:input path="responsableAct" id="responsableAct" />
-            <br/>
-            <br/>
+            <label>Responsable:</label><br>
+            <form:input path="responsableAct"/>
+            <br><br>
+
             <!-- CUPO -->
-            <label for="cupoAct">Cupo máximo:</label>
-            <form:input path="cupoAct" id="cupoAct" type="number" min="1" />
-            <br/>
-            <br/>
+            <label>Cupo máximo:</label><br>
+            <form:input path="cupoAct" type="number" min="1"/>
+            <br><br>
 
             <!-- VIGENCIA -->
-            <label for="vigenciaAct">Vigencia:</label>
-            <form:input path="vigenciaAct" id="vigenciaAct" type="date" />
-            <br/>
-            <br/>
+            <label>Vigencia:</label><br>
+            <form:input path="vigenciaAct" type="date"/>
+            <br><br>
 
-
-            <button type="submit">Guardar actividad</button>
+            <!-- BOTÓN -->
+            <button type="submit">
+                <c:choose>
+                    <c:when test="${actividad.idActividad == null}">
+                        Registrar actividad
+                    </c:when>
+                    <c:otherwise>
+                        Guardar cambios
+                    </c:otherwise>
+                </c:choose>
+            </button>
 
         </form:form>
+
     </section>
 </main>
 
-<%@include file="../lateral.jspf"%>
-<%@include file="../pie.jspf"%>
+<%@ include file="../lateral.jspf" %>
+<%@ include file="../pie.jspf" %>

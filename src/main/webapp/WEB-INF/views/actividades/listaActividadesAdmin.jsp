@@ -29,6 +29,21 @@
                     <td>${act.responsableAct}</td>
                     <td>${act.cupoAct}</td>
                     <td>${act.vigenciaAct}</td>
+
+                    <td>
+                        <!-- EDITAR -->
+                        <a href="${pageContext.request.contextPath}/actividades/editar/${act.idActividad}">
+                            Editar
+                        </a>
+
+                        <!-- ELIMINAR -->
+                        <form action="${pageContext.request.contextPath}/actividades/eliminar/${act.idActividad}"
+                              method="post"
+                              style="display:inline;"
+                              onsubmit="return confirm('¿Seguro que deseas eliminar esta actividad?');">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

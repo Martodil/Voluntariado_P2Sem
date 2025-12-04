@@ -4,35 +4,26 @@
 <main id="main-content">
     <section>
         <header>
-            <h3>Actividades registradas</h3>
+            <h3 style="padding-left: 30px;">Actividades registradas</h3>
         </header>
 
-        <table class="tabla-actividades">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Fecha</th>
-                <th>Horario</th>
-                <th>Responsable</th>
-                <th>Cupo</th>
-                <th>Vigencia</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="cards-container">
+
             <c:forEach var="act" items="${actividades}">
-                <tr>
-                    <td>${act.idActividad}</td>
-                    <td>${act.tituloAct}</td>
-                    <td>${act.fechaAct}</td>
-                    <td>${act.horarioAct}</td>
-                    <td>${act.responsableAct}</td>
-                    <td>${act.cupoAct}</td>
-                    <td>${act.vigenciaAct}</td>
-                </tr>
+                <div class="card">
+
+                    <h3>${act.tituloAct}</h3>
+
+                    <p><strong>Fecha:</strong> ${act.fechaAct}</p>
+                    <p><strong>Horario:</strong> ${act.horarioAct}</p>
+                    <p><strong>Responsable:</strong> ${act.responsableAct}</p>
+                    <p><strong>Cupo:</strong> ${act.cupoAct}</p>
+                    <p><strong>Vigencia:</strong> ${act.vigenciaAct}</p>
+
+                </div>
             </c:forEach>
-            </tbody>
-        </table>
+
+        </div>
     </section>
 </main>
 

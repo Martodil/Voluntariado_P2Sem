@@ -91,6 +91,54 @@ public class ActividadController {
         return "actividades/formActividadAdmin";
     }
 
+    @GetMapping("/editar/{idActividad}")
+    public String mostrarFormEditar(@PathVariable("idActividad") Integer idActividad,
+                                    HttpSession session,
+                                    Model model,
+                                    RedirectAttributes redirect) {
+
+        UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        if (!"A".equalsIgnoreCase(usuario.getTipoUsuario())) {
+            redirect.addFlashAttribute("mensajeError", "Solo el administrador puede editar actividades.");
+            return "redirect:/panel/indexAdmin";
+        }
+
+        Actividad actividad = actividadIRep.findById(idActividad)
+                .orElseThrow(() -> new IllegalArgumentException("Actividad no encontrada"));
+
+        model.addAttribute("actividad", actividad);   // ✅ solo esta
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("sedes", sedeIRep.findAll());
+        model.addAttribute("semestres", semestreIRep.findAll());
+        model.addAttribute("turnos", turnoIRep.findAll());
+
+        return "actividades/formActividadAdmin";
+    }
+
+
+    @PostMapping("/actualizar")
+    public String actualizarActividad(@ModelAttribute("actividad") Actividad actividad,
+                                      HttpSession session,
+                                      RedirectAttributes redirect) {
+
+        UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        if (!"A".equalsIgnoreCase(usuario.getTipoUsuario())) {
+            redirect.addFlashAttribute("mensajeError", "No tienes permiso para modificar actividades.");
+            return "redirect:/panel/indexAdmin";
+        }
+
+        actividadIRep.save(actividad);
+        redirect.addFlashAttribute("mensajeOk", "Actividad actualizada correctamente.");
+        return "redirect:/actividades/admin/lista";
+    }
+
+
     @PostMapping("/admin/guardar")
     public String guardarActividad(@ModelAttribute("actividad") Actividad actividad,
                                    HttpSession session,
@@ -102,10 +150,34 @@ public class ActividadController {
             return "redirect:/auth/login";
         }
 
-        // Aquí ya viene todo llenito en 'actividad'
         actividadIRep.save(actividad);
 
         redirect.addFlashAttribute("mensajeOk", "Actividad registrada correctamente.");
+        return "redirect:/actividades/admin/lista";
+    }
+
+    @PostMapping("/eliminar/{idActividad}")
+    public String eliminarActividad(@PathVariable("idActividad") Integer idActividad,
+                                    HttpSession session,
+                                    RedirectAttributes redirect) {
+
+        UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("usuarioActual");
+        if (usuario == null) {
+            return "redirect:/auth/login";
+        }
+        if (!"A".equalsIgnoreCase(usuario.getTipoUsuario())) {
+            redirect.addFlashAttribute("mensajeError", "No tienes permiso para eliminar actividades.");
+            return "redirect:/panel/indexAdmin";
+        }
+
+        if (!actividadIRep.existsById(idActividad)) {
+            redirect.addFlashAttribute("mensajeError", "La actividad no existe.");
+            return "redirect:/actividades/admin/lista";
+        }
+
+        actividadIRep.deleteById(idActividad);  // ✅ borrado real
+
+        redirect.addFlashAttribute("mensajeOk", "La actividad se eliminó correctamente.");
         return "redirect:/actividades/admin/lista";
     }
 
@@ -165,6 +237,7 @@ public class ActividadController {
         return "redirect:/actividades/trabajador/lista";
     }
 
+
     @GetMapping("/trabajador/mis-actividades")
     public String verMisActividades(Model model, HttpSession session, RedirectAttributes redirect) {
 
@@ -188,7 +261,6 @@ public class ActividadController {
 
         return "actividades/misActividadesTrabajador";
     }
-
 
     // RH
     @GetMapping("/rh/lista")
