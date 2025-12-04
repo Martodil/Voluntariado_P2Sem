@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public class RegistroUsuarioFrm {
 
-    // Se captura como texto y luego se convierte a Integer en el service
+
     @NotBlank(message = "El id de empleado es obligatorio")
     private String idEmpleado;
 
@@ -26,7 +26,7 @@ public class RegistroUsuarioFrm {
     private String confirmarPassword;
 
     @NotBlank(message = "Debe seleccionar un tipo de usuario")
-    private String tipoUsuario; // T, A, R o E
+    private String tipoUsuario;
 
     // ===== Getters y setters =====
 

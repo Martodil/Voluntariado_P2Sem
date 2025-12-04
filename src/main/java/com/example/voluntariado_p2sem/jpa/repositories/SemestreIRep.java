@@ -1,4 +1,7 @@
 package com.example.voluntariado_p2sem.jpa.repositories;
 
-public interface SemestreIRep {
+import com.example.voluntariado_p2sem.jpa.model.Semestre;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SemestreIRep extends JpaRepository<Semestre, Integer> {
 }
